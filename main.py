@@ -6,7 +6,7 @@ from data_entry import get_amount, get_category, get_date, get_description
 class CSV:
     CSV_FILE = "finance_data.csv"
     COLUMNS = ["date", "amount", "category", "description"]
-    FORMAT = "%d-%m-%y"
+    FORMAT = "%d-%m-%Y" 
 
     @classmethod
     def initialize_csv(cls):
@@ -56,16 +56,16 @@ class CSV:
             print("\nSummary:")
             print(f"Total Income: ${total_income:.2f}")
             print(f"Total Expense: ${total_expense:.2f}")
-            print(f"Net Savings: ${(total_income - total_income):.2f}")
-            
+            print(f"Net Savings: ${(total_income - total_expense):.2f}")
+
         return filtered_df
 
 def add():
     CSV.initialize_csv()
-    date = get_date("Enter the data of the transaction (dd-mm-yyyy) or enter for today's date: ", allow_default=True)
+    date = get_date("Enter the date of the transaction (dd-mm-yyyy) or enter for today's date: ", allow_default=True)
     amount = get_amount()
     category = get_category()
     description = get_description()
     CSV.add_entry(date, amount, category, description)
 
-add()
+CSV.get_transactions("01-01-2023", "30-07-2024")
